@@ -3,23 +3,13 @@ import {
   FaLinkedin,
   FaWhatsapp,
   FaDiscord,
-  FaMoon,
-  FaSun,
 } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { HiMenu, HiX } from "react-icons/hi";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    return (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    );
-  });
-
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
@@ -35,24 +25,17 @@ const Navbar = () => {
   ];
 
   const socialIcons = [
-    { icon: <FaGithub />, href: "https://github.com" },
-    { icon: <FaLinkedin />, href: "https://linkedin.com" },
-    { icon: <FaWhatsapp />, href: "https://wa.me/your_number" },
-    { icon: <FaDiscord />, href: "https://discord.com" },
+    { icon: <FaGithub />, href: "https://github.com/coderstar1234" },
+    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/himanshu-vashistha-b48a762a7/" },
+    { icon: <FaWhatsapp />, href: "#" },
+    { icon: <FaDiscord />, href: "#" },
   ];
 
-  // ✅ Apply Full Website Theme Globally
+  // ✅ Always set dark mode on load
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "light";
-    }
-  }, [darkMode]);
+    document.documentElement.classList.add("dark");
+  }, []);
 
-  // ✅ Smooth Scroll Function
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -63,12 +46,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 shadow-sm border-b 
-      border-gray-200 dark:border-gray-700 
-      ${darkMode
-          ? "bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900"
-          : "bg-gradient-to-r from-blue-100 via-white to-purple-100"} 
-      backdrop-blur-md bg-opacity-90`}
+      className="fixed top-0 left-0 w-full z-50 shadow-sm border-b border-gray-700 
+                 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 
+                 backdrop-blur-md bg-opacity-90"
     >
       <nav className="flex items-center justify-between px-6 py-3">
         {/* ✅ Logo */}
@@ -82,8 +62,8 @@ const Navbar = () => {
 
         {/* ✅ Desktop Slogan */}
         <div className="hidden lg:flex flex-1 justify-center">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#8245ec]">
-            <span className="text-gray-800 dark:text-white">I specialize in </span>
+          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-purple-400">
+            <span className="text-white">I specialize in </span>
             <Typewriter
               words={[
                 "Crafting Responsive UIs",
@@ -108,7 +88,7 @@ const Navbar = () => {
               <li key={link.id}>
                 <button
                   onClick={() => handleScroll(link.id)}
-                  className="hover:text-blue-600 dark:hover:text-purple-400 dark:text-gray-200 text-gray-800 transition duration-200"
+                  className="hover:text-purple-400 text-gray-200 transition duration-200"
                 >
                   {link.name}
                 </button>
@@ -117,7 +97,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* ✅ Social + Theme (Desktop) */}
+        {/* ✅ Social Icons (Desktop) */}
         <div className="hidden lg:flex items-center gap-4 text-xl">
           {socialIcons.map((item, index) => (
             <a
@@ -125,32 +105,17 @@ const Navbar = () => {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-blue-500 dark:hover:text-purple-400 text-gray-700 dark:text-gray-200 transition"
+              className="hover:text-purple-400 text-gray-200 transition"
             >
               {item.icon}
             </a>
           ))}
-          {/* ✅ Toggle Theme */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Toggle Theme"
-            className="text-xl transition"
-          >
-            {darkMode ? <FaSun className="text-yellow-400" /> : <FaMoon />}
-          </button>
         </div>
 
         {/* ✅ Mobile Toggle Button */}
         <div className="lg:hidden flex items-center gap-4">
           <button
-            onClick={() => setDarkMode(!darkMode)}
-            aria-label="Toggle Theme"
-            className="text-xl transition"
-          >
-            {darkMode ? <FaSun className="text-yellow-400" /> : <FaMoon />}
-          </button>
-          <button
-            className="text-3xl focus:outline-none"
+            className="text-3xl focus:outline-none text-gray-200"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <HiX /> : <HiMenu />}
@@ -160,13 +125,13 @@ const Navbar = () => {
 
       {/* ✅ Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-white dark:bg-gray-900 px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="lg:hidden bg-gray-900 px-6 py-4 border-t border-gray-700">
           <ul className="flex flex-col gap-4 text-lg font-semibold">
             {links.map((link) => (
               <li key={link.id}>
                 <button
                   onClick={() => handleScroll(link.id)}
-                  className="w-full text-left hover:text-blue-600 dark:hover:text-purple-400 dark:text-gray-200 text-gray-800 transition"
+                  className="w-full text-left hover:text-purple-400 text-gray-200 transition"
                 >
                   {link.name}
                 </button>
@@ -180,7 +145,7 @@ const Navbar = () => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-500 dark:hover:text-purple-400 text-gray-700 dark:text-gray-200 transition"
+                className="hover:text-purple-400 text-gray-200 transition"
               >
                 {item.icon}
               </a>

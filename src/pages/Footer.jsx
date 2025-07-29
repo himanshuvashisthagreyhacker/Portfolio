@@ -66,8 +66,8 @@ export default function Footer() {
           </div>
 
           <p className="text-sm mt-3 text-gray-300">
-            Mobile: +91-xxxxxxxxxx<br />
-            Email: your-email@gmail.com
+            Mobile: +91-9870790356<br />
+            Email: himanshuvashistha552@gmail.com
           </p>
         </div>
       </div>
